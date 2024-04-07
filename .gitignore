@@ -48,3 +48,4 @@ replay_pid*
 *.idea
 *target/
 *.properties
+*.yml

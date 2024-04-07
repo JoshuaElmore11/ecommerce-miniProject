@@ -15,20 +15,20 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(
-            strategy = GenerationType.AUTO
+            strategy = GenerationType.IDENTITY
     )
     private long id;
     @Column(unique = true, nullable = false)
     private String name;
     private String description;
+    private String image;
     private double price;
-    private int onHand;
     private boolean featured;
     private int position;
     private boolean status;
 
-    @ManyToMany(mappedBy = "products")
-    private Set<Order> orders;
+//    @ManyToMany(mappedBy = "products")
+//    private Set<Order> orders;
 
     @ManyToOne(
             fetch = FetchType.LAZY
@@ -39,12 +39,12 @@ public class Product {
     )
     private Category category;
 
-    @ManyToOne(
-            fetch = FetchType.LAZY
-    )
-    @JoinColumn(
-            name = "subcategory_id",
-            nullable = false
-    )
-    private Subcategory subcategory;
+//    @ManyToOne(
+//            fetch = FetchType.LAZY
+//    )
+//    @JoinColumn(
+//            name = "subcategory_id",
+//            nullable = false
+//    )
+//    private Subcategory subcategory;
 }

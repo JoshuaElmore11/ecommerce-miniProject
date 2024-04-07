@@ -16,12 +16,12 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(
-            strategy = GenerationType.AUTO
+            strategy = GenerationType.IDENTITY
     )
     private long id;
     @Column(unique = true, nullable = false)
     private String name;
-    private String description;
+    private String image;
     private boolean status;
     private boolean featured;
     private int position;
@@ -33,10 +33,10 @@ public class Category {
     )
     private Set<Product> products = new HashSet<>();
 
-    @OneToMany(
-            mappedBy = "category",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<Subcategory> subcategories = new HashSet<>();
+//    @OneToMany(
+//            mappedBy = "category",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private Set<Subcategory> subcategories = new HashSet<>();
 }

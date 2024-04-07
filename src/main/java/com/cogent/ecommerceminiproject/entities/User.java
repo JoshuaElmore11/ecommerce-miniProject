@@ -15,34 +15,50 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(
-            strategy = GenerationType.AUTO
+            strategy = GenerationType.IDENTITY
     )
-    private long id;
+    private Long id;
     @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false)
     private String password;
-    private String firstName;
-    private String lastName;
+    private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "address_id", referencedColumnName = "id")
+//    private Address address;
+
+//    @ManyToMany(
+//            fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL
+//    )
+//    @JoinTable(
+//            name = "users_orders",
+//            joinColumns = @JoinColumn(
+//                    name = "user_id",
+//                    referencedColumnName = "id"
+//            ),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "order_id",
+//                    referencedColumnName = "id"
+//            )
+//    )
+//    private Set<Order> orders;
 
     @ManyToMany(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = CascadeType.ALL
     )
     @JoinTable(
-            name = "users_orders",
+            name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id",
                     referencedColumnName = "id"
             ),
             inverseJoinColumns = @JoinColumn(
-                    name = "order_id",
+                    name = "role_id",
                     referencedColumnName = "id"
             )
     )
-    private Set<Order> orders;
+    private Set<Role> roles;
 }
